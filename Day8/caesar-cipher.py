@@ -35,4 +35,23 @@ def encrypt (text, shift):
 
     print(encoded_string)
 
-encrypt(text, shift)
+def decrypt (text, shift):
+    alphabet_second_haft = alphabet[-shift : ]
+    alphabet_first_haft = alphabet[0: -shift]
+    shifted_alphabet = alphabet_second_haft + alphabet_first_haft
+
+
+    index_list = []
+    for letter in text:
+        index_list.append(alphabet.index(letter))
+
+    encoded_string = ""
+    for index in index_list:
+        encoded_string += shifted_alphabet[index]
+
+    print(encoded_string)
+
+if(direction == "encode"):
+    encrypt(text, shift)
+else:
+    decrypt(text, shift)
