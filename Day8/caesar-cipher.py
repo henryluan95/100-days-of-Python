@@ -20,9 +20,14 @@ shift = int(input("Type the shift number:\n"))
 
 #TODO-3: Call the encrypt function and pass in the user inputs. You should be able to test the code and encrypt a message.
 
-def encrypt (text, shift):
-    alphabet_first_haft = alphabet[0 : shift]
-    alphabet_second_haft = alphabet[shift:]
+def caesar (text, shift, direction):
+    if(direction == "encode"):
+        alphabet_first_haft = alphabet[0: shift]
+        alphabet_second_haft = alphabet[shift:]
+    else:
+        alphabet_second_haft = alphabet[-shift:]
+        alphabet_first_haft = alphabet[0: -shift]
+
     shifted_alphabet = alphabet_second_haft + alphabet_first_haft
 
     index_list = []
@@ -35,23 +40,4 @@ def encrypt (text, shift):
 
     print(encoded_string)
 
-def decrypt (text, shift):
-    alphabet_second_haft = alphabet[-shift : ]
-    alphabet_first_haft = alphabet[0: -shift]
-    shifted_alphabet = alphabet_second_haft + alphabet_first_haft
-
-
-    index_list = []
-    for letter in text:
-        index_list.append(alphabet.index(letter))
-
-    encoded_string = ""
-    for index in index_list:
-        encoded_string += shifted_alphabet[index]
-
-    print(encoded_string)
-
-if(direction == "encode"):
-    encrypt(text, shift)
-else:
-    decrypt(text, shift)
+caesar(text,shift, direction)
